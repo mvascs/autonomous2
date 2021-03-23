@@ -12,7 +12,6 @@ target 'autonomous' do
     :hermes_enabled => false
   )
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'autonomousTests' do
     inherit! :complete

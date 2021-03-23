@@ -3,67 +3,56 @@
  * 
  * 1 - 
  */
-import React, { Component, useState } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import { Text, View, Button, TextInput } from 'react-native';
-// import Estilo from '../../styles/estilo';
 import Estilo from '../../styles/estilo'
 import Titulo from '../form/Titulo';
 import Subtitulo from '../form/Subtitulo';
-
-class Login extends Component{
-
-    // 1 - inicializar o estado no construtor
-    constructor(props){
-        super(props);
-
-        this.state = {
-            email: props.usuario.email,
-            password: props.usuario.senha,
-
-            // isLoading: false,
-        };
-
-    }
+import LoginContext from '../../context/LoginContext';
 
 
-    // 4 - métodos para alterar estado
-    atualizarEstadoEmail(email){
-        this.setState({email: email});
-    }
 
-    
+export default (props) => {
+
+    // 2 - instanciar as variáveis do estado
+    const [email, setEmail] = useState(props.email);
+    const [senha, setSenha] = useState(props.senha);
+
+
+    const ctx = useContext(LoginContext);
+    console.warn(ctx);
+
+
+
     // 3 - método para efetuar o login
     efetuarLogin = () => {
-        console.warn(this.state.email + ' - ' + this.state.senha);
+        console.warn(email.email + ' - ' + senha.senha);
     }
 
 
-    // 2 -o retorno é na render
-    render(){
-        return (
-            <View style={Estilo.form}>
-                <Text style={Estilo.fonteGrande} >Área Restrita</Text>
 
-                <TextInput 
-                style={Estilo.input}
-                placeholder='Informe o email'
-                value={this.state.email}
-                onChangeText={email => this.setState({email})}
-                />
+    // 1 - retorno
+    return (
+        <View style={Estilo.form}>
+            <Text style={Estilo.fonteGrande} >Área Restrita</Text>
 
-                <TextInput 
-                style={Estilo.input}
-                placeholder='Informe a senha'
-                value={this.state.senha}
-                onChangeText={senha => this.setState({senha})}
-                secureTextEntry
-                />
+            <TextInput 
+            style={Estilo.input}
+            placeholder='Informe o email'
+            // value={email}
+            onChangeText={email => setEmail({email})}
+            />
 
-                <Button title="Entrar" onPress={this.efetuarLogin}  />
+            <TextInput 
+            style={Estilo.input}
+            placeholder='Informe a senha'
+            // value={senha}
+            onChangeText={senha => setSenha({senha})}
+            secureTextEntry
+            />
 
-            </View>
-        );
-    }
-}
-export default Login;
+            <Button title="Entrar" onPress={efetuarLogin}  />
 
+        </View>
+    );
+ }
