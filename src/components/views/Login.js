@@ -8,7 +8,7 @@ import { Text, View, Button, TextInput } from 'react-native';
 import Estilo from '../../styles/estilo'
 import Titulo from '../form/Titulo';
 import Subtitulo from '../form/Subtitulo';
-import LoginContext from '../../context/LoginContext';
+// import LoginContext from '../../context/LoginContext';
 
 
 
@@ -19,8 +19,8 @@ export default (props) => {
     const [senha, setSenha] = useState(props.senha);
 
 
-    const ctx = useContext(LoginContext);
-    console.warn(ctx);
+    // const ctx = useContext(LoginContext);
+    // console.warn(ctx);
 
 
 
